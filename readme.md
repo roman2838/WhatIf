@@ -1,5 +1,4 @@
 title: WhatIf
-emoji: {{emoji}}
 colorFrom:  gray
 colorTo:  gray
 sdk: gradio
