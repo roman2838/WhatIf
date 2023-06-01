@@ -1,9 +1,7 @@
+---
 title: WhatIf
-emoji: "⭐\_"
-colorFrom: yellow
-colorTo: blue
 sdk: gradio
-sdk_version: 3.0.2
-app_file: .WhatIf.py
-pinned: false
-python_version: 3.7.13
+emoji: 🐢
+colorFrom: blue
+colorTo: indigo
+---
