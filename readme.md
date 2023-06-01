@@ -3,5 +3,5 @@ emoji: {{emoji}}
 colorFrom:  gray
 colorTo:  gray
 sdk: gradio
-app_file: app.py
+app_file: whatif.py
 pinned: false
