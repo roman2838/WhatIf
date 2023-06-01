@@ -3,14 +3,12 @@ import os
 from langchain.llms import OpenAI
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import HumanMessage, SystemMessage, AIMessage
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv("E:/Development/Python/scripts/keys.env")
+# load_dotenv("E:/Development/Python/scripts/keys.env")
 openai_key = os.getenv("OPENAI_API_KEY")
 print(openai_key)
-# llm = OpenAI(openai_api_key=openai_key)
-# print(os.getenv.__doc__)
-# print(llm("Love is in the air"))
+
 
 chat1 = ChatOpenAI(temperature=0.9, openai_api_key=openai_key)
 chat2 = ChatOpenAI(temperature=0.9, openai_api_key=openai_key)
@@ -23,15 +21,26 @@ def format_chat(chat_history):
         return chat_html
 
 def color_chg(name):
-    # Convert the string to a numeric value
+    background_color = (11, 15, 25)
+    background_brightness = sum(background_color) / len(background_color)
+
     value = sum(ord(char) for char in name)
+    red = (value % 128) + 128
+    green = (value // 128 % 128) + 128
+    blue = (value // 16384 % 128) + 128
 
-    # Generate RGB values using the numeric value
-    red = (value % 256)
-    green = ((value // 256) % 256)
-    blue = ((value // 65536) % 256)
+    # Calculate the contrast ratio between the background and the generated color
+    brightness = (red + green + blue) / 3
+    contrast_ratio = max(brightness, background_brightness) / min(brightness, background_brightness)
 
-    # Format the RGB values into a hex color string
+    # Adjust the brightness of the generated color if the contrast ratio is too low
+    if contrast_ratio < 4.5:
+        # Increase the brightness by finding the ratio needed to achieve the desired contrast ratio
+        brightness_ratio = 4.5 / contrast_ratio
+        red = min(int(red * brightness_ratio), 255)
+        green = min(int(green * brightness_ratio), 255)
+        blue = min(int(blue * brightness_ratio), 255)
+
     color_hex = "#{:02x}{:02x}{:02x}".format(red, green, blue)
     return color_hex
 
@@ -74,8 +83,8 @@ def initialize(name1, name2, iterations):
         response2 = chat2(MessageStack2)
         print(name2+": "+response2.content)
         MsgStack.append( name2+": "+response2.content)
-        chat_history.append({"sender": name1, "content": response1.content, "color" : "FFFFFF" } )
-        chat_history.append({"sender": name2, "content": response2.content, "color" : "111111" } )
+        chat_history.append({"sender": name1, "content": response1.content, "color" : color_chg(name1) } )
+        chat_history.append({"sender": name2, "content": response2.content, "color" : color_chg(name2) } )
         
 
         # MessageStack1.append(HumanMessage(content = response2.content))
