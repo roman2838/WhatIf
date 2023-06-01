@@ -6,10 +6,10 @@ from langchain.schema import HumanMessage, SystemMessage, AIMessage
 # from dotenv import load_dotenv
 
 # load_dotenv("E:/Development/Python/scripts/keys.env")
-if(os.environ["OPENAI_API_KEY"] == ""):
+if "OPENAI_API_KEY" not in os.environ or os.environ["OPENAI_API_KEY"] == "":
      def init_api_key(key):
-          os.environ["OPENAI_API_KEY"] = key.
-    gr.Interface( fn=init_api, inputs=["text"]).launch(server_port=1113)
+          os.environ["OPENAI_API_KEY"] = key
+     gr.Interface( fn=init_api, inputs="text", outputs="text").launch(server_port=1113)
 openai_key = os.getenv("OPENAI_API_KEY")
 
 chat1 = ChatOpenAI(temperature=0.9, openai_api_key=openai_key)
