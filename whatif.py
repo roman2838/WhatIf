@@ -8,7 +8,7 @@ from langchain.schema import HumanMessage, SystemMessage, AIMessage
 # load_dotenv("E:/Development/Python/scripts/keys.env")
 openai_key = os.getenv("OPENAI_API_KEY")
 print(openai_key)
-
+os.environ.__doc__
 
 chat1 = ChatOpenAI(temperature=0.9, openai_api_key=openai_key)
 chat2 = ChatOpenAI(temperature=0.9, openai_api_key=openai_key)

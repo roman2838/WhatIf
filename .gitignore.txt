@@ -1,0 +1,23 @@
+# Ignore Visual Studio Code generated files
+.vscode/
+*.code-workspace
+.vs
+flagged
+
+# Ignore Visual Studio Code settings files
+settings.json
+tasks.json
+launch.json
+keybindings.json
+
+# Ignore Visual Studio Code user-specific files
+.code-snippets
+.history/
+.vscode-test/
+
+# Ignore Visual Studio Code extensions
+.vscode/extensions/
+node_modules/
+
+# Ignore Visual Studio Code debug logs
+*.log
