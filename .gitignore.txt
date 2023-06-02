@@ -21,3 +21,6 @@ node_modules/
 
 # Ignore Visual Studio Code debug logs
 *.log
+
+# Ignore README.md, since we need different versions for github and huggingface
+README.md
